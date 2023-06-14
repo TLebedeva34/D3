@@ -1,0 +1,30 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+
+{% block title %}
+article.title
+{% endblock title %}
+
+{% block content %}
+   <h1>Последние новости</h1>
+<hr>
+   {% if article %}
+       <table>
+           <tr>
+               <td>Заголовок</td>
+               <td>Новость</td>
+               <td>Дата публикации</td>
+           </tr>
+           {% for articles in article %}
+           <tr>
+               <td>{{ articles.title }}</td>
+               <<td>{{ articles.text|truncatechars:20 }}</td>\
+               <td>{{ articles.date|date:'d.M.Y'}}</td>
+           </tr>
+           {% endfor %}
+       </table>
+   {% else %}
+       <h2>Новостей нет!</h2>
+   {% endif %}
+{% endblock content %}

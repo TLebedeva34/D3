@@ -23,4 +23,4 @@ def censor(value, bw):
         if word in FORBIDDEN_WORDS:
             word = word.replace(word[1:], '*' * len(word))
             return f'{value}'
-        
+

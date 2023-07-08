@@ -5,11 +5,11 @@
 {% load custom_tags %}
 
 {% block title %}
-All News
+Поиск новостей
 {% endblock title %}
 
 {% block content %}
-   <h1> Последние новости:</h1>
+   <h1> Поиск новостей:</h1>
 
 <form action="" method="get" >
     {{ filterset.form.non_field_errors }}
@@ -69,3 +69,4 @@ All News
        {% endif %}
    {% endif %}
 {% endblock content %}
+

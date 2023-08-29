@@ -1,5 +1,10 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
+
+article = 'A'
+news = 'N'
+SELECT_TYPE = [(article, 'Статья'), (news, 'Новость')]
 
 
 class Article(models.Model):
@@ -19,6 +24,11 @@ class Article(models.Model):
         to='Author',
         on_delete=models.CASCADE,
         related_name='author',
+    )
+    type = models.CharField(
+        max_length=1,
+        choices=SELECT_TYPE,
+        default=news
     )
 
     def __str__(self):
@@ -51,3 +61,11 @@ class Category(models.Model):
 class CategoryArticle(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+
+class Subscription(models.Model):
+    user = models.ForeignKey(
+        to=User,
+        on_delete=models.CASCADE,
+        related_name='subscriptions',
+    )
